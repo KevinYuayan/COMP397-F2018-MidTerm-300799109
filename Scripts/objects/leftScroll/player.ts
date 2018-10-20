@@ -1,4 +1,4 @@
-module objects {
+module leftObjects {
     export class Player extends objects.GameObject {
         // private instance variables
         
@@ -6,7 +6,7 @@ module objects {
         
         // constructors
         constructor() {
-            super("plane");
+            super("plane", -90);
 
             this.Start();
         }
@@ -16,22 +16,23 @@ module objects {
         // public methods
         public Start():void {
             this.regX = this.HalfWidth;
-            this.regY = this.HalfHeight; 
-            this.y = 435;
+            this.regY = this.HalfHeight;
+
+            this.x = 580;
         }
 
         public Update():void {
-            this.x = managers.Game.stage.mouseX;
+            this.y = managers.Game.stage.mouseY;
             this._updatePosition();
 
             // checks the right boundary
-            if(this.x > 640 - this.HalfWidth) {
-                this.x = 640 - this.HalfWidth;
+            if(this.y > 480 - this.HalfHeight) {
+                this.y = 480 - this.HalfHeight;
             }
 
             // check the left boundary
-            if(this.x < this.HalfWidth) {
-                this.x = this.HalfWidth;
+            if(this.y < this.HalfHeight) {
+                this.y = this.HalfHeight;
             }
         }
 

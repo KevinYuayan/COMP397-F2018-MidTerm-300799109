@@ -1,14 +1,14 @@
 namespace scenes {
-  export class Level2 extends objects.Scene {
+  export class Level3 extends objects.Scene {
     // private instance variable
-    private _player: rightObjects.Player;
-    private _ocean2: rightObjects.Ocean;
-    private _ocean: rightObjects.Ocean;
-    private _island: rightObjects.Island;
+    private _player: leftObjects.Player;
+    private _ocean2: leftObjects.Ocean;
+    private _ocean: leftObjects.Ocean;
+    private _island: leftObjects.Island;
 
 
     private _cloudNum: number;
-    private _clouds: rightObjects.Cloud[];
+    private _clouds: leftObjects.Cloud[];
 
     private _engineSound: createjs.AbstractSoundInstance;
 
@@ -27,15 +27,15 @@ namespace scenes {
     // public methods
 
     public Start(): void {
-      this._cloudNum = 2;
+      this._cloudNum = 3;
 
 
       // Instantiates a new Array container of Type objects.Cloud
-      this._clouds = new Array<rightObjects.Cloud>();
+      this._clouds = new Array<leftObjects.Cloud>();
 
       // Fill the Cloud Array with Clouds
       for (let count = 0; count < this._cloudNum; count++) {
-        this._clouds[count] = new rightObjects.Cloud();
+        this._clouds[count] = new leftObjects.Cloud();
       }
 
       // play background engine sound when the level starts
@@ -51,12 +51,12 @@ namespace scenes {
       this._island.Update();
 
       // updates ocean 1
-      if (this._ocean.x >= 1440 || this._ocean.x <= 640) {
+      if (this._ocean.x <= -800 || this._ocean.x >= 0) {
         this._ocean2.Update();
       }
 
       // updates ocean 2
-      if (this._ocean2.x >= 1440 || this._ocean2.x <= 640) {
+      if (this._ocean2.x <= -800 || this._ocean2.x >= 0) {
         this._ocean.Update();
       }
 
@@ -79,19 +79,19 @@ namespace scenes {
 
     public Main(): void {
       // adds ocean to the scene
-      this._ocean = new rightObjects.Ocean();
+      this._ocean = new leftObjects.Ocean();
       this.addChild(this._ocean);
 
-      this._ocean2 = new rightObjects.Ocean();
+      this._ocean2 = new leftObjects.Ocean();
       this._ocean2.Reset();
       this.addChild(this._ocean2);
 
       // adds island to the scene
-      this._island = new rightObjects.Island();
+      this._island = new leftObjects.Island();
       this.addChild(this._island);
 
       // adds player to the scene
-      this._player = new rightObjects.Player();
+      this._player = new leftObjects.Player();
       this.addChild(this._player);
 
       // adds Each Cloud in the Cloud Array to the Scene

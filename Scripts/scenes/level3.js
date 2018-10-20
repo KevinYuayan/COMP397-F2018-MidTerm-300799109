@@ -13,11 +13,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var Level2 = /** @class */ (function (_super) {
-        __extends(Level2, _super);
+    var Level3 = /** @class */ (function (_super) {
+        __extends(Level3, _super);
         // public properties
         // constructor
-        function Level2() {
+        function Level3() {
             var _this = this;
             console.log("level 2");
             _this = _super.call(this) || this;
@@ -26,13 +26,13 @@ var scenes;
         }
         // private methods
         // public methods
-        Level2.prototype.Start = function () {
-            this._cloudNum = 2;
+        Level3.prototype.Start = function () {
+            this._cloudNum = 3;
             // Instantiates a new Array container of Type objects.Cloud
             this._clouds = new Array();
             // Fill the Cloud Array with Clouds
             for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new rightObjects.Cloud();
+                this._clouds[count] = new leftObjects.Cloud();
             }
             // play background engine sound when the level starts
             this._engineSound = createjs.Sound.play("engineSound");
@@ -40,16 +40,16 @@ var scenes;
             this._engineSound.loop = -1; // loop forever
             this.Main();
         };
-        Level2.prototype.Update = function () {
+        Level3.prototype.Update = function () {
             var _this = this;
             this._player.Update();
             this._island.Update();
             // updates ocean 1
-            if (this._ocean.x >= 1440 || this._ocean.x <= 640) {
+            if (this._ocean.x <= -800 || this._ocean.x >= 0) {
                 this._ocean2.Update();
             }
             // updates ocean 2
-            if (this._ocean2.x >= 1440 || this._ocean2.x <= 640) {
+            if (this._ocean2.x <= -800 || this._ocean2.x >= 0) {
                 this._ocean.Update();
             }
             // check if player and island are colliding
@@ -60,24 +60,24 @@ var scenes;
                 managers.Collision.Check(_this._player, cloud);
             });
         };
-        Level2.prototype.Destroy = function () {
+        Level3.prototype.Destroy = function () {
             this.removeAllChildren();
             this._engineSound.stop();
         };
-        Level2.prototype.Reset = function () { };
-        Level2.prototype.Main = function () {
+        Level3.prototype.Reset = function () { };
+        Level3.prototype.Main = function () {
             var _this = this;
             // adds ocean to the scene
-            this._ocean = new rightObjects.Ocean();
+            this._ocean = new leftObjects.Ocean();
             this.addChild(this._ocean);
-            this._ocean2 = new rightObjects.Ocean();
+            this._ocean2 = new leftObjects.Ocean();
             this._ocean2.Reset();
             this.addChild(this._ocean2);
             // adds island to the scene
-            this._island = new rightObjects.Island();
+            this._island = new leftObjects.Island();
             this.addChild(this._island);
             // adds player to the scene
-            this._player = new rightObjects.Player();
+            this._player = new leftObjects.Player();
             this.addChild(this._player);
             // adds Each Cloud in the Cloud Array to the Scene
             this._clouds.forEach(function (cloud) {
@@ -86,8 +86,8 @@ var scenes;
             // add ScoreBoard UI to the Scene
             managers.Game.scoreBoard.AddGameUI(this);
         };
-        return Level2;
+        return Level3;
     }(objects.Scene));
-    scenes.Level2 = Level2;
+    scenes.Level3 = Level3;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=level2.js.map
+//# sourceMappingURL=level3.js.map

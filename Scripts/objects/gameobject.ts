@@ -60,9 +60,9 @@ module objects {
          }
  
          // constructors
-         constructor(imageString:string) {
+         constructor(imageString:string, rotation:number = 0) {
              super(managers.Game.assetManager.getResult(imageString));
- 
+             this.rotation = rotation;
              this.name = imageString;
              this._initialize();
          }
